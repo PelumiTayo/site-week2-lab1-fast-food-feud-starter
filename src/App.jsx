@@ -4,7 +4,7 @@ import "./App.css"
 import Chip from "./components/Chip/Chip"
 import Header from "./components/Header/Header"
 import Instructions from "./components/Instructions/Instructions"
-import NutrionalLabel from "./components/NutritionalLabel/NutritionalLabel"
+import NutritionalLabel from "./components/NutritionalLabel/NutritionalLabel"
 
 import { useState } from "react"
 
@@ -38,9 +38,6 @@ function catEqual(eachData){
 
 let currentMenuItems = data.filter(catEqual)
 
-console.log(currentMenuItems)
-console.log(selectedItem)
-// console.log(data.restaurant)
   return (
     <main className="App">
       {/* CATEGORIES COLUMN */}
@@ -48,13 +45,14 @@ console.log(selectedItem)
         <div className="categories options">
           <h2 className="title">Categories</h2>
             {categories.map((category) => {
+
               let isActiveBool;
               if (category === "Burgers"){
                 isActiveBool = true
               }
               return (
               <Chip key={category} label = {category} isActive = {seletedCategory===category} handleClick = {() => setSelectedCategory(category)} />
-              // <p key={idx}>{category}</p>
+              // <p key={category}>{category}</p>
               )
             })}
         </div>
@@ -95,6 +93,7 @@ console.log(selectedItem)
             
           {/* NUTRITION FACTS */}
           <div className="NutritionFacts nutrition-facts">
+          {selectedItem ? <NutritionalLabel item={selectedItem} /> : null} 
           </div>
         </div>
 
@@ -110,4 +109,3 @@ export default App
 
 
 
-{/* <Chip label="Hello" isActive = {isActive} handleClick={() => setIsActive(!isActive)} */}
